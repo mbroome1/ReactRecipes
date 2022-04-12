@@ -1,6 +1,6 @@
 ﻿namespace ReactRecipes.Models
 {
-    public class RecipeSearchResult
+    public class RecipeSearchResultDto
     {
         public int? Id { get; set; }
         public string? Title { get; set; }

@@ -1,8 +1,8 @@
 ﻿namespace ReactRecipes.Models
 {
-    public class RecipeSearch
+    public class RecipeSearchDto
     {
-        public List<RecipeSearchResult> Results { get; set; } = new List<RecipeSearchResult>();
+        public List<RecipeSearchResultDto> Results { get; set; } = new List<RecipeSearchResultDto>();
         public int Offset { get; set; }
         public int Number { get; set; }
         public int TotalResults { get; set; }

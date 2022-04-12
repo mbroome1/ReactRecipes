@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IRecipesRepository, JsonFileRecipesRepository>();
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.ReturnHttpNotAcceptable = true;
+});
 
 var app = builder.Build();
 

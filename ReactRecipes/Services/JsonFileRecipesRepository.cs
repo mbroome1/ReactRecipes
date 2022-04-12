@@ -11,9 +11,9 @@ namespace ReactRecipes.Services
 
         }
 
-        public async Task<Recipe> GetRecipeAsync(int id)
+        public async Task<RecipeDto> GetRecipeAsync(int id)
         {
-            using (StreamReader reader = new StreamReader("JsonRecipesSearch.json"))
+            using (StreamReader reader = new StreamReader("JsonRecipe.json"))
             {
                 var json = await reader.ReadToEndAsync();
                 reader.Close();
@@ -22,13 +22,13 @@ namespace ReactRecipes.Services
                 {
                     PropertyNameCaseInsensitive = true
                 };
-                var result = JsonSerializer.Deserialize<Recipe>(json, options);
+                var result = JsonSerializer.Deserialize<RecipeDto>(json, options);
 
                 return result;
             };
         }
 
-        public async Task<RecipeSearch> GetRecipesAsync(string searchQuery, int? numberOfRecords, int? offset)
+        public async Task<RecipeSearchDto> GetRecipesAsync(string searchQuery, int? numberOfRecords, int? offset)
         {
             using (StreamReader reader = new StreamReader("JsonRecipesSearch.json"))
             {
@@ -40,7 +40,7 @@ namespace ReactRecipes.Services
                     PropertyNameCaseInsensitive = true
                 };
 
-                var result = JsonSerializer.Deserialize<RecipeSearch>(json, options);
+                var result = JsonSerializer.Deserialize<RecipeSearchDto>(json, options);
 
                 return result;
             };

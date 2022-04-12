@@ -17,7 +17,7 @@ namespace ReactRecipes.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<RecipeSearch>> GetRecipes( string searchQuery, int? numberOfRecords = 10, int? offset = 0)
+        public async Task<ActionResult<RecipeSearchDto>> GetRecipes( string searchQuery, int? numberOfRecords = 10, int? offset = 0)
         {
             var recipes = await recipesRepository.GetRecipesAsync(searchQuery, numberOfRecords, offset);
             if (recipes == null)
@@ -25,6 +25,18 @@ namespace ReactRecipes.Controllers
                 return NotFound();
             }
             return Ok(recipes);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<RecipeDto>> GetRecipe(int recipeId)
+        {
+            var recipe = await recipesRepository.GetRecipeAsync(recipeId);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            return  Ok(recipe);
         }
     }
 }
