@@ -1,5 +1,6 @@
 ﻿//using Newtonsoft.Json;
 using ReactRecipes.Models;
+using System.Text;
 using System.Text.Json;
 
 namespace ReactRecipes.Services
@@ -13,7 +14,7 @@ namespace ReactRecipes.Services
 
         public async Task<RecipeDto> GetRecipeAsync(int id)
         {
-            using (StreamReader reader = new StreamReader("JsonRecipe.json"))
+            using (StreamReader reader = new StreamReader("JsonRecipe.json", Encoding.UTF7))
             {
                 var json = await reader.ReadToEndAsync();
                 reader.Close();
@@ -30,7 +31,7 @@ namespace ReactRecipes.Services
 
         public async Task<RecipeSearchDto> GetRecipesAsync(string searchQuery, int? numberOfRecords, int? offset)
         {
-            using (StreamReader reader = new StreamReader("JsonRecipesSearch.json"))
+            using (StreamReader reader = new StreamReader("JsonRecipesSearch.json", Encoding.UTF7))
             {
                 var json = await reader.ReadToEndAsync();
                 reader.Close();

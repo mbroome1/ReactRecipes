@@ -13,9 +13,6 @@
   "aggregateLikes": 2,
   "spoonacularScore": 92.0,
   "healthScore": 90.0,
-  "creditsText": "Foodista.com – The Cooking Encyclopedia Everyone Can Edit",
-  "license": "CC BY 3.0",
-  "sourceName": "Foodista",
   "pricePerServing": 168.12,
   "extendedIngredients": [
     {
@@ -488,6 +485,8 @@
       ]
     }
   ],
+  "sourceName": null,
+  "creditsText": null,
   "originalId": null,
   "spoonacularSourceUrl": "https://spoonacular.com/pasta-with-tuna-654959"
 }
