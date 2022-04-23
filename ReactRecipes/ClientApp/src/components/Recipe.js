@@ -75,8 +75,46 @@ export default class Recipe extends Component {
                 <img src={recipeState.image} alt="recipe image" className="img-fluid" />
             </div>
             <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.summary)}></div>
+            <h4>Ready in {recipeState.readyInMinutes} minutes</h4>
+            <h4>Servings: {recipeState.servings}</h4>
+
+            <div>
+                <h2>Ingredients</h2>
+                <table className="table table-borderless">
+                    <thead>
+                        <tr className=''>
+                            <th>Ingredient</th>
+                            <th>Unit</th>
+                            {/* <th>Original</th> */}
+                            <th className="text-secondary">Original Name</th>
+                        </tr>
+                    </thead>
+                {
+                    recipeState.extendedIngredients.map(ingredient => (
+                        <tbody>
+                            <tr>
+                                <td>{ingredient.name}</td>
+                                <td>{ingredient.amount} {ingredient.unit}</td>
+                                {/* <td>{ingredient.original}</td> */}
+                                <td className="text-secondary">{ingredient.originalName}</td>
+                            </tr>
+                        </tbody>
+                    ))
+                }
+                </table>
+            </div>
+
+            {/* <h2>Instructions</h2>
+            <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.instructions)}></div> */}
+
             <h2>Instructions</h2>
-            <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.instructions)}></div>
+            <ol>
+            {
+                recipeState.analyzedInstructions[0].steps.map(step => (
+                   <li>{step.Step}</li>
+                ))
+            }
+            </ol>
             
     </div>
     )
