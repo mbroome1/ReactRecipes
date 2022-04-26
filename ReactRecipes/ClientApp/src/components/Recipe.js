@@ -49,7 +49,6 @@ export default class Recipe extends Component {
     }
 
     setInnerHTML(stuff) {
-
         return {__html: stuff};
     }
 

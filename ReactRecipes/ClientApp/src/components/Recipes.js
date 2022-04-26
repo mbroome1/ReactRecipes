@@ -18,6 +18,7 @@ export class Recipes extends Component {
 
     handleSearchInput = (e) => {
         this.setState({search:e.target.value});
+        localStorage.setItem("search", e.target.value)
     }
 
     handleSubmit = async (e) => {
@@ -58,8 +59,23 @@ export class Recipes extends Component {
         }
         finally {
             this.setState({loading: false});
+            localStorage.setItem("search", this.state.search);
+            localStorage.setItem("recipes", JSON.stringify(this.state.recipeData));
         }
 
+    }
+
+    componentDidMount = () => {
+        const searchFromStorage = localStorage.getItem("search");
+        const recipesFromStorage = localStorage.getItem("recipes");
+
+        if (searchFromStorage) {
+            this.setState({search: searchFromStorage});
+        }
+
+        if (recipesFromStorage) {
+            this.setState({recipeData: JSON.parse(recipesFromStorage)})
+        }
     }
         
     render() {
@@ -74,7 +90,13 @@ export class Recipes extends Component {
             ));
 
         } else if (this.state.recipeData.results && this.state.recipeData.results.length>0) {
-            contents = <RecipeList recipes={this.state.recipeData.results} />;
+            contents = <RecipeList 
+                            recipes={this.state.recipeData.results} 
+                            search={this.state.search} 
+                            offset={this.state.recipeData.offset} 
+                            number={this.state.recipeData.number} 
+                            totalResults={this.state.recipeData.totalResults} 
+                        />;
             
         }
 

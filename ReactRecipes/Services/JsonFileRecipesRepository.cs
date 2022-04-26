@@ -29,7 +29,8 @@ namespace ReactRecipes.Services
             };
         }
 
-        public async Task<RecipeSearchDto> GetRecipesAsync(string searchQuery, int? numberOfRecords, int? offset)
+        public async Task<RecipeSearchDto> GetRecipesAsync(
+            string searchQuery, int? numberOfRecords, int? offset)
         {
             using (StreamReader reader = new StreamReader("JsonRecipesSearch.json", Encoding.UTF7))
             {
