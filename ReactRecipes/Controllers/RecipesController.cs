@@ -29,9 +29,9 @@ namespace ReactRecipes.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<RecipeDto>> GetRecipe(int recipeId)
+        public async Task<ActionResult<RecipeDto>> GetRecipe(int id)
         {
-            var recipe = await recipesRepository.GetRecipeAsync(recipeId);
+            var recipe = await recipesRepository.GetRecipeAsync(id);
             if (recipe == null)
             {
                 return NotFound();
