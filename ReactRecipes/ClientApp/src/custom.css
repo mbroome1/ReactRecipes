@@ -12,3 +12,12 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.instruction-list {
+    list-style-position: outside;
+    padding-left: 15px;
+}
+
+/*.instruction-list li {
+    padding-left: 10px;
+}*/

@@ -14,20 +14,19 @@ export default class Recipe extends Component {
 
     }
 
-    //async getLocalStorage() {
-    //    return await localStorage.getItem("recipe");
+    async getLocalStorage() {
+        return await localStorage.getItem("recipe");
 
-    //}
+    }
 
     async componentDidMount() {
 
+        const recipeFromStorage = await this.getLocalStorage()
 
+        if (recipeFromStorage) {
+            this.setState({ recipeData: JSON.parse(recipeFromStorage) })
+        }
 
-        //const recipeFromStorage = await getLocalStorage()
-
-        //if (recipeFromStorage) {
-        //    this.setState({ recipeData: JSON.parse(recipeFromStorage) })
-        //}
 
         try {
             const init = {
@@ -37,8 +36,10 @@ export default class Recipe extends Component {
                     'mode': 'cors'
                     }
             }
-            //console.log(this.state.recipeData.id)
-            if (this.state.paramId != this.state.recipeData.id) {
+
+            // If browser local storage (previously accessed) recipe id is equal to the current requested recipe id, load existing 
+            // state instead of fetching from API. Otherwise fetch recipe from API and store in local storage.
+            if (this.state.paramId !== this.state.recipeData.id) {
                 const response = await fetch(`api/recipes/${this.state.paramId}`, init)
                 const data = await response.json();
                 if (response.ok) {
@@ -89,21 +90,25 @@ export default class Recipe extends Component {
     return (
       <div>
             <h1 className="display-2">{recipeState.title}</h1>
-            <div>
-                <img src={recipeState.image} className="img-fluid" />
+            <div className="row">
+                <div className="col-md-6">
+                    <img src={recipeState.image} className="img-fluid" />
+                </div>
+                <div className="col-md-6">
+                    <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.summary)}></div>
+                    <h4 className="mt-5">Ready in {recipeState.readyInMinutes} minutes</h4>
+                    <h4 className="lead text-success">Servings: {recipeState.servings}</h4>
+                </div>
             </div>
-            <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.summary)}></div>
-            <h4 className="mt-5">Ready in {recipeState.readyInMinutes} minutes</h4>
-            <h4>Servings: {recipeState.servings}</h4>
+
 
             <div className="mt-5">
                 <h2>Ingredients</h2>
                 <table className="table table-borderless">
                     <thead>
-                        <tr className=''>
+                        <tr>
                             <th>Ingredient</th>
                             <th>Unit</th>
-                            {/* <th>Original</th> */}
                             <th className="text-secondary">Original Name</th>
                         </tr>
                     </thead>
@@ -113,7 +118,6 @@ export default class Recipe extends Component {
                             <tr>
                                 <td>{ingredient.name}</td>
                                 <td>{ingredient.amount} {ingredient.unit}</td>
-                                {/* <td>{ingredient.original}</td> */}
                                 <td className="text-secondary">{ingredient.originalName}</td>
                             </tr>
                         </tbody>
@@ -122,14 +126,12 @@ export default class Recipe extends Component {
                 </table>
             </div>
 
-            {/* <h2>Instructions</h2>
-            <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.instructions)}></div> */}
 
-            <h2>Instructions</h2>
-            <ol>
+            <h2 className="py-3">Instructions</h2>
+            <ol className="instruction-list">
             {
                 recipeState.analyzedInstructions[0].steps.map(step => (
-                   <li>{step.Step}</li>
+                   <li className="ps-2 pb-2">{step.Step}</li>
                 ))
             }
             </ol>
