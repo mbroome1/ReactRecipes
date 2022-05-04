@@ -21,9 +21,7 @@ export class Recipes extends Component {
         localStorage.setItem("search", e.target.value)
     }
 
-    handleSubmit = async (e) => {
-        e.preventDefault();
-        const searchValue = e.target.search.value;
+    async fetchResultsFromApi(searchValue) {
         const init = {
             method: 'GET',
             headers: {
@@ -62,8 +60,20 @@ export class Recipes extends Component {
             localStorage.setItem("search", this.state.search);
             localStorage.setItem("recipes", JSON.stringify(this.state.recipeData));
         }
-
     }
+
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        const searchValue = e.target.search.value;
+        
+        await this.fetchResultsFromApi(searchValue)
+    }
+
+    handlePageChange(offset) {
+        alert(offset);
+    }
+
+
 
     componentDidMount = () => {
         const searchFromStorage = localStorage.getItem("search");
@@ -95,7 +105,8 @@ export class Recipes extends Component {
                             search={this.state.search} 
                             offset={this.state.recipeData.offset} 
                             number={this.state.recipeData.number} 
-                            totalResults={this.state.recipeData.totalResults} 
+                            totalResults={this.state.recipeData.totalResults}
+                            handlePageChange={this.handlePageChange}
                         />;
             
         }
