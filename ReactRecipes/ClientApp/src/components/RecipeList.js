@@ -9,7 +9,7 @@ export default class RecipeList extends Component {
         this.state = {
             recipes: props.recipes,
             search: props.search,
-            offset: 0,
+            offset: props.offset,
             number: props.number,
             totalResults: props.totalResults,
             totalPages: 0,
@@ -28,14 +28,17 @@ export default class RecipeList extends Component {
         })
     }
 
-    onPageChange(page) {
-        const newOffset = Math.max(1,page-1)*this.state.number;
+    // Clicked pagination page event: workout new offset from page number, then call parent
+    // compent's (Recipes) handle method to do a re-fetch with the new offset.
+    onPageChange(pageNumber) {
+        const newOffset = Math.max(0,pageNumber-1)*this.state.number;
         this.props.handlePageChange(newOffset);
     }
 
     componentDidMount() {
         this.calculatePages();
     }
+
   render() {
     // Create an array of ascending page numbers based on total page count state.
     const pageCountArray = [];

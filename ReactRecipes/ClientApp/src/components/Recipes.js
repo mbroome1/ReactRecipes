@@ -16,12 +16,17 @@ export class Recipes extends Component {
         errors: []
     }
 
+    handlePageChange = this.handlePageChange.bind(this);
+
     handleSearchInput = (e) => {
         this.setState({search:e.target.value});
         localStorage.setItem("search", e.target.value)
     }
 
-    async fetchResultsFromApi(searchValue) {
+    async fetchResultsFromApi(searchValue, offsetValue) {
+        if(!offsetValue) {
+            offsetValue = 0;
+        }
         const init = {
             method: 'GET',
             headers: {
@@ -34,7 +39,7 @@ export class Recipes extends Component {
 
         
         try {
-            const response = await fetch(`api/recipes?searchQuery=${searchValue}`, init)
+            const response = await fetch(`api/recipes?searchQuery=${searchValue}&offset=${offsetValue}`, init)
             const data = await response.json();
             if (response.ok) {
                 this.setState({recipeData: data})
@@ -53,7 +58,7 @@ export class Recipes extends Component {
             }
         }
         catch (error) {
-            console.log(error)
+            console.log(error);
         }
         finally {
             this.setState({loading: false});
@@ -66,11 +71,17 @@ export class Recipes extends Component {
         e.preventDefault();
         const searchValue = e.target.search.value;
         
-        await this.fetchResultsFromApi(searchValue)
+        await this.fetchResultsFromApi(searchValue, 0);
     }
 
-    handlePageChange(offset) {
-        alert(offset);
+    async handlePageChange(offset) {
+        const search = this.state.search;
+        if (search == '') {
+            alert("search is empty");
+            return;
+        }
+
+        await this.fetchResultsFromApi(search, offset);
     }
 
 
