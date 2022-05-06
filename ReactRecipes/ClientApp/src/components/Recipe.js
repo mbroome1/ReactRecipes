@@ -23,7 +23,7 @@ export default class Recipe extends Component {
 
         const recipeFromStorage = await this.getLocalStorage()
 
-        if (recipeFromStorage) {
+        if (recipeFromStorage !== null) {
             this.setState({ recipeData: JSON.parse(recipeFromStorage) })
         }
 
@@ -39,14 +39,18 @@ export default class Recipe extends Component {
 
             // If browser local storage (previously accessed) recipe id is equal to the current requested recipe id, load existing 
             // state instead of fetching from API. Otherwise fetch recipe from API and store in local storage.
-            if (this.state.paramId !== this.state.recipeData.id) {
-                const response = await fetch(`api/recipes/${this.state.paramId}`, init)
+            if (this.state.paramId != this.state.recipeData.id) {
+            const response = await fetch(`api/recipes/${this.state.paramId}`, init)
+            console.log(response)
                 const data = await response.json();
-                if (response.ok) {
+            if (response.ok) {
+                console.log("I got to response.ok");
                     this.setState({ recipeData: data })
-                } else {
-                    this.setState({ recipeData: {} })
+            } else {
+                console.log("Failed to get to response.ok, in else block");
 
+                    this.setState({ recipeData: {} })
+                    console.log(`Error:: ${data}`)
                     for (const err in data.errors) {
                         data.errors[err].forEach(msg => {
                             this.setState(prevState => ({
@@ -60,7 +64,9 @@ export default class Recipe extends Component {
 
         }
         catch (error) {
-            console.log(error);
+            this.setState(prevState => ({
+                errors: [...prevState.errors, "Something went wrong on the server fetching this recipe."]
+            }));
         }
         finally {
             this.setState({ loading: false });
@@ -72,10 +78,25 @@ export default class Recipe extends Component {
         return {__html: stuff};
     }
 
+    handleGoBack() {
+        return this.props.history.goBack();
+    }
+
     
     render() {
         if (this.state.loading === true) {
-            return "Loading...";
+            return (
+                <div className="text-center">
+                    <div className="spinner-grow spinner-grow-sm text-dark" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow spinner-grow-sm text-dark" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow spinner-grow-sm text-dark" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>);
         }
         
         if (this.state.errors && this.state.errors.length>0) {
@@ -88,7 +109,8 @@ export default class Recipe extends Component {
 
     const recipeState = this.state.recipeData;
     return (
-      <div>
+        <div>
+            <div><button className="btn btn-secondary" onClick={()=> this.handleGoBack()}>Go Back</button></div>
             <h1 className="display-2">{recipeState.title}</h1>
             <div className="row">
                 <div className="col-md-6">

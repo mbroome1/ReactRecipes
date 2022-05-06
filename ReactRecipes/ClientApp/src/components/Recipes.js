@@ -76,7 +76,7 @@ export class Recipes extends Component {
 
     async handlePageChange(offset) {
         const search = this.state.search;
-        if (search == '') {
+        if (search === '') {
             alert("search is empty");
             return;
         }
@@ -102,24 +102,26 @@ export class Recipes extends Component {
     render() {
         let contents = ''; 
 
-        if (this.state.loading === true ) {
+        if (this.state.loading === true) {
             contents = "Loading";
 
-        } else if (this.state.errors && this.state.errors.length>0) {
+        } else if (this.state.errors && this.state.errors.length > 0) {
             contents = this.state.errors.map((error, i) => (
-                    <p key={i} className="text-danger">{error}</p>
+                <p key={i} className="text-danger">{error}</p>
             ));
 
-        } else if (this.state.recipeData.results && this.state.recipeData.results.length>0) {
-            contents = <RecipeList 
-                            recipes={this.state.recipeData.results} 
-                            search={this.state.search} 
-                            offset={this.state.recipeData.offset} 
-                            number={this.state.recipeData.number} 
-                            totalResults={this.state.recipeData.totalResults}
-                            handlePageChange={this.handlePageChange}
-                        />;
-            
+        } else if (this.state.recipeData.results && this.state.recipeData.results.length > 0) {
+            contents = <RecipeList
+                recipes={this.state.recipeData.results}
+                search={this.state.search}
+                offset={this.state.recipeData.offset}
+                number={this.state.recipeData.number}
+                totalResults={this.state.recipeData.totalResults}
+                handlePageChange={this.handlePageChange}
+            />;
+
+        } else {
+            contents = <p className="lead">No results found.</p>
         }
 
         return (

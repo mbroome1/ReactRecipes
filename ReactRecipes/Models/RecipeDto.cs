@@ -34,7 +34,7 @@
         public List<string> DishTypes { get; set; } = new List<string>();
         public List<string> Diets { get; set; } = new List<string>();
         public List<string> Occasions { get; set; } = new List<string>();
-        public WinePairingDto WinePairing { get; set; }
+        //public WinePairingDto WinePairing { get; set; } = new WinePairingDto();
         public string Instructions { get; set; }
         public List<AnalyzedInstructionDto> AnalyzedInstructions { get; set; } = new List<AnalyzedInstructionDto>();
         public object OriginalId { get; set; }
