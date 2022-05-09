@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Loading from './Loading';
 
 export default class Recipe extends Component {
     static displayName = Recipe.name;
@@ -39,18 +40,13 @@ export default class Recipe extends Component {
 
             // If browser local storage (previously accessed) recipe id is equal to the current requested recipe id, load existing 
             // state instead of fetching from API. Otherwise fetch recipe from API and store in local storage.
-            if (this.state.paramId != this.state.recipeData.id) {
+            if (this.state.paramId !== this.state.recipeData.id) {
             const response = await fetch(`api/recipes/${this.state.paramId}`, init)
-            console.log(response)
                 const data = await response.json();
             if (response.ok) {
-                console.log("I got to response.ok");
                     this.setState({ recipeData: data })
             } else {
-                console.log("Failed to get to response.ok, in else block");
-
                     this.setState({ recipeData: {} })
-                    console.log(`Error:: ${data}`)
                     for (const err in data.errors) {
                         data.errors[err].forEach(msg => {
                             this.setState(prevState => ({
@@ -85,18 +81,7 @@ export default class Recipe extends Component {
     
     render() {
         if (this.state.loading === true) {
-            return (
-                <div className="text-center">
-                    <div className="spinner-grow spinner-grow-sm text-dark" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                    <div className="spinner-grow spinner-grow-sm text-dark" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                    <div className="spinner-grow spinner-grow-sm text-dark" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                </div>);
+            return <Loading />
         }
         
         if (this.state.errors && this.state.errors.length>0) {
@@ -119,14 +104,14 @@ export default class Recipe extends Component {
                 <div className="col-md-6">
                     <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.summary)}></div>
                     <h4 className="mt-5">Ready in {recipeState.readyInMinutes} minutes</h4>
-                    <h4 className="lead text-success">Servings: {recipeState.servings}</h4>
+                    <h4 className="text-secondary">Servings: {recipeState.servings}</h4>
                 </div>
             </div>
 
 
             <div className="mt-5">
                 <h2>Ingredients</h2>
-                <table className="table table-borderless">
+                <table className="table table-sm table-borderless">
                     <thead>
                         <tr>
                             <th>Ingredient</th>
@@ -134,6 +119,8 @@ export default class Recipe extends Component {
                             <th className="text-secondary">Original Name</th>
                         </tr>
                     </thead>
+
+
                 {
                     recipeState.extendedIngredients.map(ingredient => (
                         <tbody>

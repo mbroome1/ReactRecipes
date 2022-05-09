@@ -1,4 +1,5 @@
 ﻿import React, { Component } from "react";
+import Loading from "./Loading";
 import RecipeList from "./RecipeList";
 
 export class Recipes extends Component {
@@ -103,7 +104,7 @@ export class Recipes extends Component {
         let contents = ''; 
 
         if (this.state.loading === true) {
-            contents = "Loading";
+            contents = <Loading />;
 
         } else if (this.state.errors && this.state.errors.length > 0) {
             contents = this.state.errors.map((error, i) => (

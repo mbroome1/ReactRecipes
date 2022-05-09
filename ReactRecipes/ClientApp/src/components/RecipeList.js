@@ -76,13 +76,13 @@ export default class RecipeList extends Component {
 
                 {
                     // Iterate through the pageCountArray array above and map page numbers to <li> tags.
-                    pageCountArray.map(page => (
+                    pageCountArray.map((page,index) => (
                         
                         page === this.state.currentPage 
-                            ? <li className="page-item active">
+                            ? <li key={index} className="page-item active">
                                 <a className="page-link">{page}</a>
                             </li>
-                            : <li className="page-item"><a className="page-link" onClick={() => this.onPageChange(page)}>{page}</a></li>
+                            : <li key={index} className="page-item"><a className="page-link" onClick={() => this.onPageChange(page)}>{page}</a></li>
                     ))
                 }
             
