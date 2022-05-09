@@ -50,14 +50,16 @@ export default class RecipeList extends Component {
 
       <div>
         {
-          this.state.search> '' && <h4 className="lead text-primary">Search results for: "{this.state.search}"</h4>
+          this.state.search> '' && <h3 className="text-primary">Search results for: "{this.state.search}"</h3>
         }
-        <p className="lead text-secondary">Total Results: "{this.state.totalResults}"</p>
-        <p className="lead text-secondary">Number to show: "{this.state.number}"</p>
-        <p className="lead text-secondary">Offset: "{this.state.offset}"</p>
-        <p className="lead text-secondary">TotalPages: "{this.state.totalPages}"</p>
-        <p className="lead text-secondary">CurrentPage: "{this.state.currentPage}"</p>
-        
+        <h6 className="text-secondary">Total Results: {this.state.totalResults}</h6>
+        {/*<p className="lead text-secondary">Number to show: "{this.state.number}"</p>*/}
+        {/*<p className="lead text-secondary">Offset: "{this.state.offset}"</p>*/}
+        {/*<p className="lead text-secondary">TotalPages: "{this.state.totalPages}"</p>*/}
+        {/*<p className="lead text-secondary">CurrentPage: "{this.state.currentPage}"</p>*/}
+
+            <p className="lead mt-5">Page {this.state.currentPage} of {this.state.totalPages}</p>
+
         <div className="row">
         {
             this.state.recipes.map(recipe => (

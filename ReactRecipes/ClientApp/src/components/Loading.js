@@ -6,10 +6,10 @@ export default class Loading extends Component {
         <div className="text-center">
             <div className="spinner-grow spinner-grow-sm text-dark" role="status">
                 <span className="visually-hidden">Loading...</span>
-            </div>
+            </div>&nbsp;
             <div className="spinner-grow spinner-grow-sm text-dark" role="status">
                 <span className="visually-hidden">Loading...</span>
-            </div>
+            </div>&nbsp;
             <div className="spinner-grow spinner-grow-sm text-dark" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>

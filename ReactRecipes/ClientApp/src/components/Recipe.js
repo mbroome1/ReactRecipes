@@ -7,7 +7,7 @@ export default class Recipe extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            paramId: this.props.match.params['id'],
+            paramId: parseInt(this.props.match.params['id']),
             loading: true,
             recipeData: {},
             errors: []
@@ -40,9 +40,12 @@ export default class Recipe extends Component {
 
             // If browser local storage (previously accessed) recipe id is equal to the current requested recipe id, load existing 
             // state instead of fetching from API. Otherwise fetch recipe from API and store in local storage.
-            if (this.state.paramId !== this.state.recipeData.id) {
+            console.log(typeof (this.state.paramId));
+            console.log(typeof (this.state.recipeData.id));
+            if (parseInt(this.state.paramId) !== this.state.recipeData.id) {
             const response = await fetch(`api/recipes/${this.state.paramId}`, init)
                 const data = await response.json();
+/*                console.log(data);*/
             if (response.ok) {
                     this.setState({ recipeData: data })
             } else {
@@ -96,7 +99,7 @@ export default class Recipe extends Component {
     return (
         <div>
             <div><button className="btn btn-secondary" onClick={()=> this.handleGoBack()}>Go Back</button></div>
-            <h1 className="display-2">{recipeState.title}</h1>
+            <h1 className="">{recipeState.title}</h1>
             <div className="row">
                 <div className="col-md-6">
                     <img src={recipeState.image} className="img-fluid" />
@@ -116,16 +119,16 @@ export default class Recipe extends Component {
                         <tr>
                             <th>Ingredient</th>
                             <th>Unit</th>
-                            <th className="text-secondary">Original Name</th>
+                            <th className="text-secondary">Ingredient Ext.</th>
                         </tr>
                     </thead>
 
 
                 {
-                    recipeState.extendedIngredients.map(ingredient => (
-                        <tbody>
+                    recipeState.extendedIngredients.map((ingredient,index) => (
+                        <tbody key={index}>
                             <tr>
-                                <td>{ingredient.name}</td>
+                                <td >{ingredient.name}</td>
                                 <td>{ingredient.amount} {ingredient.unit}</td>
                                 <td className="text-secondary">{ingredient.originalName}</td>
                             </tr>
@@ -138,9 +141,9 @@ export default class Recipe extends Component {
 
             <h2 className="py-3">Instructions</h2>
             <ol className="instruction-list">
-            {
-                recipeState.analyzedInstructions[0].steps.map(step => (
-                   <li className="ps-2 pb-2">{step.Step}</li>
+                {
+                    recipeState.analyzedInstructions[0].steps.map((step, index) => (
+                        <li key={index} className="ps-2 pb-2">{step.Step}</li>
                 ))
             }
             </ol>

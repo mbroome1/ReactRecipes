@@ -44,7 +44,6 @@ export class Recipes extends Component {
             const data = await response.json();
             if (response.ok) {
                 this.setState({recipeData: data})
-                console.log(data);
             } else {
                 this.setState({recipeData: []})
 
@@ -59,7 +58,7 @@ export class Recipes extends Component {
             }
         }
         catch (error) {
-            console.log(error);
+            //console.log(error);
         }
         finally {
             this.setState({loading: false});
@@ -127,7 +126,7 @@ export class Recipes extends Component {
 
         return (
             <div>
-                <h1 className="display-2">Recipes</h1>
+                <h1 className="">Search Recipes</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="mb-3 input-group">
                         <input type="search" id="search" name="search" className="form-control" value={this.state.search} onChange={this.handleSearchInput} />
