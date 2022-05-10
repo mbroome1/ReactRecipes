@@ -2,7 +2,7 @@
 {
     public class ProductMatches
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string? Title { get; set; }
         public double AverageRating { get; set; } = 0;
         public string? Description { get; set; }

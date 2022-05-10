@@ -2,7 +2,7 @@
 {
     public class ExtendedIngredient
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Aisle { get; set; }
         public string Image { get; set; }
         public string Consistency { get; set; }

@@ -138,11 +138,11 @@ export default class Recipe extends Component {
             <div className="mt-5">
                 <h2>Ingredients</h2>
                 <div class="btn-group btn-group-sm my-3">
-                    <input type="radio" class="btn-check" name="measure" id="measureMetric" value="metric" autocomplete="off" checked={this.state.useMetric} onChange={this.handleMeasureToggle} />
-                    <label class="btn btn-outline-secondary w-" htmlFor="measureMetric" onChange={this.handleMeasureToggle}>Metric</label>
+                    <input type="radio" class="btn-check" name="measure" id="measureMetric" value="metric" autoComplete="off" checked={this.state.useMetric} onChange={this.handleMeasureToggle} />
+                    <label className="btn btn-outline-secondary w-" htmlFor="measureMetric" onChange={this.handleMeasureToggle}>Metric</label>
 
-                    <input type="radio" class="btn-check" name="measure" id="measureUs" value="us" autocomplete="off" checked={!this.state.useMetric} onChange={this.handleMeasureToggle} />
-                    <label class="btn btn-outline-secondary" htmlFor="measureUs" >Us</label>
+                    <input type="radio" class="btn-check" name="measure" id="measureUs" value="us" autoComplete="off" checked={!this.state.useMetric} onChange={this.handleMeasureToggle} />
+                    <label className="btn btn-outline-secondary" htmlFor="measureUs" >Us</label>
                 </div>
                 <table className="table table-sm table-borderless">
                     <thead>
