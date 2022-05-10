@@ -135,7 +135,7 @@ export default class Recipe extends Component {
             </div>
 
 
-            <div className="mt-5">
+            <div className="mt-5 col-sm-12 col-lg-6 ">
                 <h2>Ingredients</h2>
                 <div class="btn-group btn-group-sm my-3">
                     <input type="radio" class="btn-check" name="measure" id="measureMetric" value="metric" autoComplete="off" checked={this.state.useMetric} onChange={this.handleMeasureToggle} />
@@ -179,7 +179,7 @@ export default class Recipe extends Component {
 
             <div className="mt-4">
                 <h5 className="">
-                    View full details about this recipe at: <a className="link" href={recipeState.sourceUrl}>{recipeState.creditsText}</a>
+                    View full details about this recipe at: <a className="link" target="_blank" href={recipeState.sourceUrl}>{recipeState.creditsText}</a>
                 </h5>
              </div>
 

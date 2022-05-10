@@ -52,7 +52,7 @@ export default class RecipeList extends Component {
         {
           this.state.search> '' && <h3 className="text-primary">Search results for: "{this.state.search}"</h3>
         }
-        <h6 className="text-secondary">Total Results: {this.state.totalResults}</h6>
+        <h5 className="">Total Results: {this.state.totalResults}</h5>
         {/*<p className="lead text-secondary">Number to show: "{this.state.number}"</p>*/}
         {/*<p className="lead text-secondary">Offset: "{this.state.offset}"</p>*/}
         {/*<p className="lead text-secondary">TotalPages: "{this.state.totalPages}"</p>*/}
@@ -66,9 +66,9 @@ export default class RecipeList extends Component {
                 <RecipeCard key={recipe.id} recipe={recipe} />
             ))
         }
-        </div>
-        <div>
-        <nav>
+            </div>
+
+            <nav className="mt-3">
             <ul className="pagination d-flex flex-wrap justify-content-center">
                 {
                     // Previous button
@@ -97,7 +97,6 @@ export default class RecipeList extends Component {
                 }
             </ul>
         </nav>
-        </div>
       </div>
     )
   }
