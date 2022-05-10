@@ -1,3 +1,8 @@
+html,body {
+  height: 100vh;
+  background-color: #FDFDFD;
+}
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -27,3 +32,12 @@ code {
 /*.instruction-list li {
     padding-left: 10px;
 }*/
+
+.footer {
+  /* background-color: #145DA0;
+  background-color: #83746E;
+  background-color: #D6DDE0;
+  background-color: #D9E4EC;
+  background-color: #E5E8E8; */
+  background-color: #f3f3f3;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
+import Footer from './Footer';
 import { NavMenu } from './NavMenu';
 
 export class Layout extends Component {
@@ -7,11 +8,12 @@ export class Layout extends Component {
 
   render () {
     return (
-      <div>
+      <div className='d-flex flex-column min-vh-100'>
         <NavMenu />
-        <Container>
+        <Container className="flex-grow-1">
           {this.props.children}
-        </Container>
+          </Container>
+          <Footer />
       </div>
     );
   }
