@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReactRecipes.Models;
+using System.Net;
 using System.Text.Json;
 
 namespace ReactRecipes.Services
@@ -38,26 +39,49 @@ namespace ReactRecipes.Services
             }
         }
 
-        public async Task<RecipeSearchDto> GetRecipesAsync(string searchQuery, int? numberOfRecords, int? offset)
+        public async Task<RecipeSearchDto?> GetRecipesAsync(string searchQuery, int? numberOfRecords, int? offset)
         {
             var httpClient = clientFactory.CreateClient();
             var key = config["spoonacular"];
-
             string url = 
-                $"https://api.spoonacular.com/recipes/complexSearch?query={searchQuery}&number={numberOfRecords}&offset={offset}&apiKey={key}";
+                $"https://api.spoonacular.com/recipes/complexSearch?query={searchQuery}&number={numberOfRecords}&offset={offset}&apiKey={key}s";
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
-            HttpResponseMessage response = await httpClient.SendAsync(request);
+            try
+            {
 
-            //if (response.IsSuccessStatusCode)
-            //{
-                var responseAsJson = await response.Content.ReadFromJsonAsync<RecipeSearchDto>();
-                return responseAsJson;
-            //}
-            //else
-            //{
-            //    throw new Exception("Custom Error Message from GetRecipesAsync in Sp.Repository");
-            //}
+
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+                HttpResponseMessage response = await httpClient.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseAsJson = await response.Content.ReadFromJsonAsync<RecipeSearchDto?>();
+                    return responseAsJson;
+                } 
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new Exception("Unautorized access to this api.");
+                }
+                else
+                {
+                    throw new Exception("Something went wrong.");
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                var customError = new
+                {
+                    status = 
+                }
+                //throw new Exception("Custom Error Message from GetRecipesAsync in Sp.Repository");
+                throw new Exception(ex.Message);
+
+            }
+
+
 
 
 

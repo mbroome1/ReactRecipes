@@ -43,9 +43,18 @@ export class Recipes extends Component {
             const response = await fetch(`api/recipes?searchQuery=${searchValue}&offset=${offsetValue}`, init)
             const data = await response.json();
             if (response.ok) {
-                this.setState({recipeData: data})
-            } else {
+                console.log(data)
+                this.setState({ recipeData: data })
+
+            } else if (response.status === 400) {
+                this.setState(prevState => ({
+                    errors: [...prevState.errors, data]
+                }));
+            }
+
+            else {
                 this.setState({recipeData: []})
+    
 
                 for(const err in data.errors) {
                     data.errors[err].forEach(msg => {
@@ -58,7 +67,7 @@ export class Recipes extends Component {
             }
         }
         catch (error) {
-            //console.log(error);
+            console.log(error);
         }
         finally {
             this.setState({loading: false});
