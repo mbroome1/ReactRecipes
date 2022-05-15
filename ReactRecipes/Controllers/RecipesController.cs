@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReactRecipes.Models;
+using ReactRecipes.ResourceParameters;
 using ReactRecipes.Services;
 
 namespace ReactRecipes.Controllers
@@ -18,23 +19,18 @@ namespace ReactRecipes.Controllers
 
         [HttpGet()]
         public async Task<ActionResult<RecipeSearchDto?>> GetRecipes(
-            string searchQuery, int? numberOfRecords = 10, int? offset = 0)
+            [FromQuery] RecipesSearchResourceParameters recipesSearchResourceParameters)
         {
             try
             {
-                var recipes = await recipesRepository.GetRecipesAsync(searchQuery, numberOfRecords, offset);
-                
-                if (recipes.Results.Count == 0)
-                {
-                    return NotFound();
-                }
+                var recipes = await recipesRepository.GetRecipesAsync(recipesSearchResourceParameters);
 
                 return Ok(recipes);
             }
             catch (Exception ex)
             {
-
-                return BadRequest(ex.Message);
+ 
+                return StatusCode(500, ex.Message);
             }
 
         }

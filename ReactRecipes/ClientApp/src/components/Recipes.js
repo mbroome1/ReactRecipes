@@ -46,7 +46,7 @@ export class Recipes extends Component {
                 console.log(data)
                 this.setState({ recipeData: data })
 
-            } else if (response.status === 400) {
+            } else if (response.status === 500) {
                 this.setState(prevState => ({
                     errors: [...prevState.errors, data]
                 }));

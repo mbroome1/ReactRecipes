@@ -1,5 +1,6 @@
 ﻿//using Newtonsoft.Json;
 using ReactRecipes.Models;
+using ReactRecipes.ResourceParameters;
 using System.Text;
 using System.Text.Json;
 
@@ -30,7 +31,7 @@ namespace ReactRecipes.Services
         }
 
         public async Task<RecipeSearchDto> GetRecipesAsync(
-            string searchQuery, int? numberOfRecords, int? offset)
+            RecipesSearchResourceParameters recipesSearchResourceParameters)
         {
             using (StreamReader reader = new StreamReader("JsonRecipesSearch.json", Encoding.UTF7))
             {
