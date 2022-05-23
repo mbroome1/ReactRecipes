@@ -10,7 +10,7 @@ export class Layout extends Component {
     return (
       <div className='d-flex flex-column min-vh-100'>
         <NavMenu />
-        <Container className="flex-grow-1">
+        <Container className="flex-grow-1 mt-3">
           {this.props.children}
           </Container>
           <Footer />

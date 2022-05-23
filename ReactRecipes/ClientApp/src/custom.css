@@ -2,6 +2,12 @@ html,body {
   height: 100vh;
   background-color: #FDFDFD;
 }
+body {
+  font-family: 'Roboto', sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Montserrat', sans-serif;
+}
 
 /* Provide sufficient contrast against white background */
 a {
@@ -40,4 +46,8 @@ code {
   background-color: #D9E4EC;
   background-color: #E5E8E8; */
   background-color: #f3f3f3;
+}
+
+.active {
+  color: #E01A76;
 }

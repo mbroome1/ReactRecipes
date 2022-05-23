@@ -177,8 +177,8 @@ export default class Recipe extends Component {
             <h2 className="py-3">Instructions</h2>
             <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.instructions)}></div>
 
-            <div className="mt-4">
-                <h5 className="">
+            <div className="pt-5">
+                <h5 className="text-center">
                     View full details about this recipe at: <a className="link" target="_blank" href={recipeState.sourceUrl}>{recipeState.creditsText}</a>
                 </h5>
              </div>
