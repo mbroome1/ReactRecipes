@@ -36,8 +36,6 @@ export default class Recipe extends Component {
         }
 
 
-
-
         const recipeFromStorage = await this.getLocalStorageRecipe();
 
         if (recipeFromStorage !== null) {
@@ -56,8 +54,6 @@ export default class Recipe extends Component {
 
             // If browser local storage (previously accessed) recipe id is equal to the current requested recipe id, load existing 
             // state instead of fetching from API. Otherwise fetch recipe from API and store in local storage.
-            console.log(typeof (this.state.paramId));
-            console.log(typeof (this.state.recipeData.id));
             if (parseInt(this.state.paramId) !== this.state.recipeData.id) {
             const response = await fetch(`api/recipes/${this.state.paramId}`, init)
                 const data = await response.json();
@@ -137,11 +133,11 @@ export default class Recipe extends Component {
 
             <div className="mt-5 col-sm-12 col-lg-6 ">
                 <h2>Ingredients</h2>
-                <div class="btn-group btn-group-sm my-3">
-                    <input type="radio" class="btn-check" name="measure" id="measureMetric" value="metric" autoComplete="off" checked={this.state.useMetric} onChange={this.handleMeasureToggle} />
+                <div className="btn-group btn-group-sm my-3">
+                    <input type="radio" className="btn-check" name="measure" id="measureMetric" value="metric" autoComplete="off" checked={this.state.useMetric} onChange={this.handleMeasureToggle} />
                     <label className="btn btn-outline-secondary w-" htmlFor="measureMetric" onChange={this.handleMeasureToggle}>Metric</label>
 
-                    <input type="radio" class="btn-check" name="measure" id="measureUs" value="us" autoComplete="off" checked={!this.state.useMetric} onChange={this.handleMeasureToggle} />
+                    <input type="radio" className="btn-check" name="measure" id="measureUs" value="us" autoComplete="off" checked={!this.state.useMetric} onChange={this.handleMeasureToggle} />
                     <label className="btn btn-outline-secondary" htmlFor="measureUs" >Us</label>
                 </div>
                 <table className="table table-sm table-borderless">
