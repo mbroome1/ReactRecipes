@@ -33,9 +33,9 @@ export class Home extends Component {
   render () {
     return (
         <div>
-            <div className="hero p-4 text-center bg-light rounded">
+            <div className="hero p-6 text-center bg-hero rounded">
               <h1 className="display-4">Feeling Hungry?</h1>
-              <p className="mt-3">Use the search to browse for something to eat.</p>
+              <p className="mt-3 lead">Why not browse for something to cook and eat.</p>
               <div className="mt-4 ">
                 <a href="/recipes" className="btn btn-lg btn-outline-secondary">Browse Recipes</a>
               </div>

@@ -24,6 +24,7 @@ code {
   color: #E01A76;
 }
 
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
@@ -38,6 +39,10 @@ code {
 /*.instruction-list li {
     padding-left: 10px;
 }*/
+
+.p-6 {
+  padding: 4rem;
+}
 
 .footer {
   /* background-color: #145DA0;

@@ -25,6 +25,9 @@ export class NavMenu extends Component {
     return (
       <header>
         <Navbar className="navbar navbar-light navbar-expand-sm navbar-toggleable-sm box-shadow mb-3" light>
+        {/* <Navbar className="navbar navbar-dark navbar-expand-sm navbar-toggleable-sm mb-3 bg-dark" dark> */}
+        {/* <Navbar className="navbar navbar-dark navbar-expand-sm navbar-toggleable-sm mb-3 bg-dark box-shadow" dark> */}
+        {/* <Navbar className="navbar navbar-light navbar-expand-sm navbar-toggleable-sm mb-3" light> */}
           <Container>
             <NavbarBrand tag={Link} to="/" className='fw-bold'>React Recipes</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
