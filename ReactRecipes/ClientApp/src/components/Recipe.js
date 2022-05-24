@@ -125,7 +125,8 @@ export default class Recipe extends Component {
                 </div>
                 <div className="col-md-6">
                     <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.summary)}></div>
-                    <h5 className="mt-5">Ready in {recipeState.readyInMinutes} minutes</h5>
+                    <p className="mt-4 text-black-50">Note: Pricing in USD.</p>
+                    <h5 className="mt-3">Ready in {recipeState.readyInMinutes} minutes</h5>
                     <h5 className="mt-2">Servings: {recipeState.servings}</h5>
                 </div>
             </div>
@@ -174,9 +175,17 @@ export default class Recipe extends Component {
             <div dangerouslySetInnerHTML={this.setInnerHTML(recipeState.instructions)}></div>
 
             <div className="pt-5">
-                <h5 className="text-center">
-                    View full details about this recipe at: <a className="link" target="_blank" href={recipeState.sourceUrl}>{recipeState.creditsText}</a>
-                </h5>
+                <div className="bg-light p-3">
+                    <h5 className="text-center">
+                        <p>View full details about this recipe at:</p>
+                        <a className="link" target="_blank" href={recipeState.sourceUrl}>
+                            {
+                            recipeState.creditsText != null ? recipeState.creditsText : recipeState.sourceUrl
+                            }
+                        </a>
+                    </h5>
+                </div>
+
              </div>
 
             {/* NOT IN USE:  Some recipes have incomplete steps. */}

@@ -135,11 +135,11 @@ export class Recipes extends Component {
 
         return (
             <div>
-                <h1 className="mb-3">Search Recipes</h1>
+                <h4 className="mb-3">Search:</h4>
                 <form onSubmit={this.handleSubmit}>
                     <div className="mb-3 input-group">
                         <input type="search" id="search" name="search" className="form-control" value={this.state.search} onChange={this.handleSearchInput} />
-                        <input type="submit" className="btn btn-primary" value="Search" />
+                        <input type="submit" className="btn btn-secondary" value="Search" />
                     </div>
                  </form>
 

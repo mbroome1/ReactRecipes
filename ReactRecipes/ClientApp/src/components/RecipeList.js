@@ -50,7 +50,7 @@ export default class RecipeList extends Component {
 
       <div>
         {
-          this.state.search> '' && <h3 className="text-primary">Search results for: "{this.state.search}"</h3>
+          this.state.search> '' && <h5 className="text-secondary">Results for: "{this.state.search}"</h5>
         }
         <h5 className="">Total Results: {this.state.totalResults}</h5>
         {/*<p className="lead text-secondary">Number to show: "{this.state.number}"</p>*/}
@@ -58,7 +58,7 @@ export default class RecipeList extends Component {
         {/*<p className="lead text-secondary">TotalPages: "{this.state.totalPages}"</p>*/}
         {/*<p className="lead text-secondary">CurrentPage: "{this.state.currentPage}"</p>*/}
 
-            <p className="lead mt-5">Page {this.state.currentPage} of {this.state.totalPages}</p>
+            <p className="lead mt-4">Page {this.state.currentPage} of {this.state.totalPages}</p>
 
         <div className="row">
         {
