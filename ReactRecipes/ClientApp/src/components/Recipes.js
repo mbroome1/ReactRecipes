@@ -129,7 +129,10 @@ export class Recipes extends Component {
                 handlePageChange={this.handlePageChange}
             />;
 
-        } else {
+        } else if (!this.state.search || !this.state.recipeData.results) {
+            contents = "";
+        }
+        else {
             contents = <p className="lead">No results found.</p>
         }
 
