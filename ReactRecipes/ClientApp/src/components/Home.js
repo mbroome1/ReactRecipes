@@ -37,7 +37,7 @@ export class Home extends Component {
               <h1 className="display-4">Feeling Hungry?</h1>
               <p className="mt-3 lead">Why not browse for something to cook and eat.</p>
               <div className="mt-4 ">
-                <a href="/recipes" className="btn btn-lg btn-outline-secondary">Browse Recipes</a>
+                <a href="./recipes" className="btn btn-lg btn-outline-secondary">Browse Recipes</a>
               </div>
             </div>
             
