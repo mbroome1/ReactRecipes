@@ -18,7 +18,7 @@ export default class RecipeCard extends Component {
                     <h6>{this.state.recipe.title}</h6>
                     </div>
                     <div className="card-footer bg-transparent text-center border-0">
-                        <a href={'/recipes/' + this.state.recipe.id} className="btn btn-outline-secondary">View</a>
+                        <a href={'./recipes/' + this.state.recipe.id} className="btn btn-outline-secondary">View</a>
                     </div>
             </div>
         </div>
